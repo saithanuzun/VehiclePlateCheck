@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VehiclePlateCheck.Views.MainPage"
+             xmlns:local="clr-namespace:VehiclePlateCheck.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel ></local:MainPageViewModel>
+    </ContentPage.BindingContext>
+    
+    <NavigationPage.TitleView>
+ 
+        <StackLayout  >
+            <Label Text="VEHICLE CHECK" TextColor="#f5f6fa" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Title" ></Label>
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+
+    <StackLayout BackgroundColor="#353b48" Orientation="Vertical" >
+
+        <Frame Margin="20,30,20,0" CornerRadius="25">
+
+            <Entry BackgroundColor="White"   Placeholder="ENTER PLATE" TextTransform="Uppercase" >
+
+            </Entry>
+
+        </Frame>
+        
+
+        <Button  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="120" BorderRadius="80" Text="CHECK" Margin="0,0,0,30" Clicked="Button_Clicked" ></Button>
+
+
+
+
+    </StackLayout>
+
+
+
+
+
+
+
+
+
+
+
+</ContentPage>

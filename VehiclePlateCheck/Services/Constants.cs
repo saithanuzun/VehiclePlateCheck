@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VehiclePlateCheck.Solutions
+namespace VehiclePlateCheck.Services
 {
     public static class Constants
     {

@@ -12,7 +12,7 @@ namespace VehiclePlateCheck.Models
             public string registrationNumber { get; set; }
 
         [JsonProperty("co2Emissions")]
-           public int co2Emissions { get; set; }
+            public int co2Emissions { get; set; }
 
         [JsonProperty("engineCapacity")]
             public int engineCapacity { get; set; }

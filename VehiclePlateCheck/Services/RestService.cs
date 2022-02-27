@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace VehiclePlateCheck.Solutions
+namespace VehiclePlateCheck.Services
 {
     public class RestService
     {
@@ -18,5 +18,8 @@ namespace VehiclePlateCheck.Solutions
         {
             _client = new HttpClient();
         }
+
+
+
     }
 }

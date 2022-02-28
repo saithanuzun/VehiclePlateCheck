@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiclePlateCheck.Views.DetailsPage">
     <NavigationPage.TitleView>
-        <StackLayout  Margin="-80,0,0,0">
-            <Label Text="RESULTS" TextColor="#f5f6fa" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Title" ></Label>
+        <StackLayout  Margin="-70,0,0,0">
+            <Label Text="RESULTS" TextColor="#f5f6fa" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"  FontFamily="NumberPlate" FontSize="35" ></Label>
         </StackLayout>
     </NavigationPage.TitleView>
 

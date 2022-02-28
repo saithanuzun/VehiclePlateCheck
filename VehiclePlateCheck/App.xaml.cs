@@ -3,6 +3,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using VehiclePlateCheck.Views;
 
+[assembly: ExportFont("UKNumberPlate.ttf")]
+[assembly: ExportFont("UKNumberPlate.ttf", Alias = "NumberPlate")]
+
 namespace VehiclePlateCheck
 {
     public partial class App : Application

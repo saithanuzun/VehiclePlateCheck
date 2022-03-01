@@ -19,6 +19,7 @@
 
 
     <StackLayout BackgroundColor="#353b48" Orientation="Vertical" >
+        
 
         <Frame Margin="20,50,20,0" CornerRadius="25">
 

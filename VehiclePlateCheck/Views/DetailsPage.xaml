@@ -7,8 +7,110 @@
             <Label Text="RESULTS" TextColor="#f5f6fa" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"  FontFamily="NumberPlate" FontSize="35" ></Label>
         </StackLayout>
     </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MainLabel" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="#7f8fa6"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="NumberPlate"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="center"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Padding" Value="0,10,0,10"/>
+            </Style>
+            <Style x:Key="FirstLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="NumberPlate"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="10,14,0,10" />
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="#c23616"/>
+
+            </Style>
+            <Style x:Key="SecondLabel" TargetType="Label" BasedOn="{StaticResource FirstLabel}">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="Margin" Value="0,10,20,10" />
+                <Setter Property="FontFamily" Value="NumberPlate"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="TextColor" Value="#2f3640"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
 
     <ScrollView>
+        <StackLayout Orientation="Vertical" BackgroundColor="#353b48" Padding="0,0,0,20">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="Registration Number"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="AB2345R5" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            
+            <Label Text="VEHICLE" Style="{StaticResource MainLabel}"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="Make"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="Renault" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="Colour"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="BEIGE" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="fuel type"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="diesel" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="Engine capacity"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="1453" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="year of manufacture"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="2010" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="first registration"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="2010-12" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+
+            <Label Text="MOT" Style="{StaticResource MainLabel}"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="MOT Status"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="Valid" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="MOT expiry date"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="2022-07-14" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            
+            <Label Text="TAX" Style="{StaticResource MainLabel}"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="tax status"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="taxed" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="date of issued"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="2021-11-20" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="tax due date"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="2022-11-01" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0" >
+                <Label Text="co2 emmissions"  Style="{StaticResource FirstLabel}"></Label>
+                <Label Text="138" Style="{StaticResource SecondLabel}"></Label>
+            </StackLayout>
+
+
+
+
+
+           
+        </StackLayout>
+        
+        
+        
+        
 
     </ScrollView>
 

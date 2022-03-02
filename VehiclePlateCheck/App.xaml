@@ -3,6 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiclePlateCheck.App">
     <Application.Resources>
+        <!-- DetailsPages-->
+        <Style x:Key="MainLabel" TargetType="Label">
+            <Setter Property="BackgroundColor" Value="#7f8fa6"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontFamily" Value="NumberPlate"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Padding" Value="0,10,0,10"/>
+        </Style>
+        <Style x:Key="FirstLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="NumberPlate"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="Margin" Value="10,14,0,10" />
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextColor" Value="#c23616"/>
+
+        </Style>
+        <Style x:Key="SecondLabel" TargetType="Label" BasedOn="{StaticResource FirstLabel}">
+            <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            <Setter Property="Margin" Value="0,10,20,10" />
+            <Setter Property="FontFamily" Value="NumberPlate"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextColor" Value="#2f3640"/>
+        </Style>
 
     </Application.Resources>
 </Application>

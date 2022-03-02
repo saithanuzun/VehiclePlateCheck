@@ -2,13 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiclePlateCheck.Views.MainPage"
-             xmlns:local="clr-namespace:VehiclePlateCheck.ViewModels" 
-             xmlns:behaviors="clr-namespace:VehiclePlateCheck.Solutions">
+             xmlns:local="clr-namespace:VehiclePlateCheck.ViewModels"
+             x:DataType="local:MainPageViewModel">
 
-    <ContentPage.BindingContext>
-        <local:MainPageViewModel ></local:MainPageViewModel>
-    </ContentPage.BindingContext>
-    
     <NavigationPage.TitleView >
  
         <StackLayout >
@@ -24,14 +20,14 @@
         <Frame Margin="20,50,20,0" CornerRadius="25">
 
             <Entry BackgroundColor="White"   Placeholder="ENTER PLATE" TextTransform="Uppercase" 
-                   MaxLength="8" CharacterSpacing="2" HorizontalTextAlignment="Center" FontFamily="NumberPlate" FontAttributes="Bold" FontSize="30"  >
-               
+                   MaxLength="8" CharacterSpacing="2" HorizontalTextAlignment="Center" FontFamily="NumberPlate" FontAttributes="Bold" FontSize="30"
+                   Text="{Binding Plate}">
             </Entry>
 
         </Frame>
 
 
-        <Button  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="120" BorderRadius="80" Text="CHECK" Margin="0,0,0,30" Clicked="Button_Clicked" FontFamily="NumberPlate" FontSize="25" ></Button>
+        <Button  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="100" BorderRadius="80" Text="CHECK" Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" ></Button>
 
 
 

@@ -13,6 +13,7 @@ namespace VehiclePlateCheck.ViewModels
         public DetailsPageViewModel(VehicleDataModel _vehicleData)
         {
             this._vehicleData= _vehicleData;
+            
         }
 
         public VehicleDataModel _vehicleDataModel { get => _vehicleData; set { _vehicleData = value; } }

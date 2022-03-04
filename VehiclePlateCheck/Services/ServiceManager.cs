@@ -14,26 +14,32 @@ namespace VehiclePlateCheck.Services
 {
     public class ServiceManager
     {
-        private HttpClient client;
+        private HttpClient httpClient;
 
         public ServiceManager()
         {
-            client = new HttpClient();
-            client.DefaultRequestHeaders.Add("x-api-key", Constants.ApiKey);
+            httpClient = new HttpClient();
 
         }
-        public async Task<List<VehicleDataModel>> GetVehicleData(RequestBody _requestBody,bool isNewItem=false)
+        public async Task<VehicleDataModel> GetVehicleData(RequestBody _requestBody)
         {
-            var Content = new StringContent(JsonConvert.SerializeObject(_requestBody), Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(new HttpMethod("POST"), Constants.Url);
 
-            var response = await client.PostAsync( Constants.Url, Content);
-            var result  = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<VehicleDataModel>>(result);
+            request.Headers.TryAddWithoutValidation("x-api-key", Constants.ApiKey);
+            var registrationNumber = _requestBody.RegistrationNumber;
+            request.Content = new StringContent("{\"registrationNumber\": \""+registrationNumber+"\"}");
+            request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
+            var response = await httpClient.SendAsync(request);
+            var stringResult = await response.Content.ReadAsStringAsync();
 
+            VehicleDataModel _vehicleData = JsonConvert.DeserializeObject<VehicleDataModel>(stringResult);
+
+            return _vehicleData;
 
         }
-        
+
+
 
 
 

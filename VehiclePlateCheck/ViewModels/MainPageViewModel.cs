@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using VehiclePlateCheck.Models;
+using VehiclePlateCheck.Services;
 using VehiclePlateCheck.Views;
 using Xamarin.Forms;
 
@@ -15,7 +16,7 @@ namespace VehiclePlateCheck.ViewModels
 
         private ICommand _buttonClickedCommand;
         private String _plate;
-        VehicleDataModel _vehicleData=null;
+        private ServiceManager _serviceManager = new ServiceManager();
         public MainPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
@@ -37,8 +38,11 @@ namespace VehiclePlateCheck.ViewModels
 
         public async void ButtonClicked()
         {
-            
-            await Navigation.PushAsync(new DetailsPage(_vehicleData));
+            string _plate=this._plate.Trim();
+            RequestBody _requestBody = new RequestBody();
+            _requestBody.RegistrationNumber = _plate;
+            var VehicleDataModel =await _serviceManager.GetVehicleData(_requestBody);          
+            await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
         }
     
         

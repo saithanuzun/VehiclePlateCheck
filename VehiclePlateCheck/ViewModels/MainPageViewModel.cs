@@ -93,40 +93,40 @@ namespace VehiclePlateCheck.ViewModels
 
             }
             ViewControl();
+            await Task.Delay(1000);
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-
-                //no conection alert
+                await App.Current.MainPage.DisplayAlert("Information", "No Internet Connection", "OK");
                 ViewControl();
                 return;
             }
-
-
-            await Task.Delay(3000);
-
-            if (_plate == null)
+            else if (_plate == null)
             {
-                //no plate number alert
+                await App.Current.MainPage.DisplayAlert("Information", "Please Enter a Valid Registration", "OK");
                 ViewControl();
                 return;
             }
-
-
-            RequestBody _requestBody = new RequestBody();
-            _requestBody.RegistrationNumber = _plate;
-
-            var VehicleDataModel = await _serviceManager.GetVehicleDataAsync(_requestBody);
-
-            if (VehicleDataModel == null)
+            else
             {
-                //vehicle hasnot been found alert
-                ViewControl();
-                return;
+                RequestBody _requestBody = new RequestBody();
+                _requestBody.RegistrationNumber = _plate;
 
-            }
-            await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
-            ViewControl();
+                var VehicleDataModel = await _serviceManager.GetVehicleDataAsync(_requestBody);
+
+                if (VehicleDataModel == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Information", "Vehicle Has Not Been Found", "OK");
+                    ViewControl();
+                    return;
+
+                }
+                else
+                {
+                    await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
+                    ViewControl();
+                }              
+            }         
         }
 
 

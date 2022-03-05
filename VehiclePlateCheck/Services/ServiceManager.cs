@@ -43,14 +43,7 @@ namespace VehiclePlateCheck.Services
             {
                 return null;
             }
-
-
-
         }
-
-
-
-
 
     }
 }

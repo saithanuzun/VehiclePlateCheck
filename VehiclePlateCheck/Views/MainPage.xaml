@@ -25,18 +25,19 @@
             </Entry>
 
         </Frame>
-        <ActivityIndicator IsVisible="true" >
-            
+        
+
+
+        <Button IsVisible="{Binding IsVisibleButton}"  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="100" BorderRadius="80" Text="CHECK" 
+                 Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" ></Button>
+
+        <ActivityIndicator IsVisible="{Binding IsVisibleIndicator}" IsRunning="{Binding IsRunning}"  Color="#f5f6fa"  VerticalOptions="EndAndExpand" Margin="0,0,0,50">
+
         </ActivityIndicator>
 
 
-        <Button  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="100" BorderRadius="80" Text="CHECK" 
-                 Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" ></Button>
-
-
-
-
     </StackLayout>
+    
 
 
 

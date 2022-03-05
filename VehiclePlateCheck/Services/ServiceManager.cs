@@ -26,34 +26,25 @@ namespace VehiclePlateCheck.Services
             var request = new HttpRequestMessage(new HttpMethod("POST"), Constants.Url);
 
             request.Headers.TryAddWithoutValidation("x-api-key", Constants.ApiKey);
-            request.Content = new StringContent("{\"registrationNumber\": \""+_requestBody.RegistrationNumber+"\"}");
+            request.Content = new StringContent("{\"registrationNumber\": \"" + _requestBody.RegistrationNumber + "\"}");
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-            try
-            {
-                var response = await httpClient.SendAsync(request);
-                if(response.IsSuccessStatusCode)
-                {
-                    var stringResult = await response.Content.ReadAsStringAsync();
-                    VehicleDataModel _vehicleData = JsonConvert.DeserializeObject<VehicleDataModel>(stringResult);
 
-                    return _vehicleData;
-
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception)
+            var response = await httpClient.SendAsync(request);
+            if (response.IsSuccessStatusCode)
             {
+                var stringResult = await response.Content.ReadAsStringAsync();
+                VehicleDataModel _vehicleData = JsonConvert.DeserializeObject<VehicleDataModel>(stringResult);
 
-                throw;
+                return _vehicleData;
+
             }
-            finally
+            else
             {
-                
+                return null;
             }
+
+
 
         }
 

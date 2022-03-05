@@ -21,21 +21,39 @@ namespace VehiclePlateCheck.Services
             httpClient = new HttpClient();
 
         }
-        public async Task<VehicleDataModel> GetVehicleData(RequestBody _requestBody)
+        public async Task<VehicleDataModel> GetVehicleDataAsync(RequestBody _requestBody)
         {
             var request = new HttpRequestMessage(new HttpMethod("POST"), Constants.Url);
 
             request.Headers.TryAddWithoutValidation("x-api-key", Constants.ApiKey);
-            var registrationNumber = _requestBody.RegistrationNumber;
-            request.Content = new StringContent("{\"registrationNumber\": \""+registrationNumber+"\"}");
+            request.Content = new StringContent("{\"registrationNumber\": \""+_requestBody.RegistrationNumber+"\"}");
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-            var response = await httpClient.SendAsync(request);
-            var stringResult = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var response = await httpClient.SendAsync(request);
+                if(response.IsSuccessStatusCode)
+                {
+                    var stringResult = await response.Content.ReadAsStringAsync();
+                    VehicleDataModel _vehicleData = JsonConvert.DeserializeObject<VehicleDataModel>(stringResult);
 
-            VehicleDataModel _vehicleData = JsonConvert.DeserializeObject<VehicleDataModel>(stringResult);
+                    return _vehicleData;
 
-            return _vehicleData;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                
+            }
 
         }
 

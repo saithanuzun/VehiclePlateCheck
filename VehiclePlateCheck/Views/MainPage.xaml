@@ -25,22 +25,18 @@
             </Entry>
 
         </Frame>
+        <ActivityIndicator IsVisible="true" >
+            
+        </ActivityIndicator>
 
 
-        <Button  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="100" BorderRadius="80" Text="CHECK" Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" ></Button>
+        <Button  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="100" BorderRadius="80" Text="CHECK" 
+                 Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" ></Button>
 
 
 
 
     </StackLayout>
-
-
-
-
-
-
-
-
 
 
 

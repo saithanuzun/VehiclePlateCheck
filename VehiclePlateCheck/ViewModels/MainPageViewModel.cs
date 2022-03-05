@@ -39,10 +39,18 @@ namespace VehiclePlateCheck.ViewModels
         public async void ButtonClicked()
         {
             string _plate=this._plate.Trim();
+            Console.WriteLine(_plate);
             RequestBody _requestBody = new RequestBody();
             _requestBody.RegistrationNumber = _plate;
-            var VehicleDataModel =await _serviceManager.GetVehicleData(_requestBody);          
+
+            var VehicleDataModel =await _serviceManager.GetVehicleDataAsync(_requestBody);    
+            if(VehicleDataModel==null)
+            {
+                return;
+
+            }
             await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
+
         }
     
         

@@ -12,9 +12,6 @@
         </StackLayout>
     </NavigationPage.TitleView>
     
-    
-   
-    
 
     <ScrollView>
         <StackLayout Orientation="Vertical" BackgroundColor="#353b48" Padding="0,0,0,20">

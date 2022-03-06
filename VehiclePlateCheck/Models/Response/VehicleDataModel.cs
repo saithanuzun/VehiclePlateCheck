@@ -5,10 +5,8 @@ using Newtonsoft.Json;
 
 namespace VehiclePlateCheck.Models
 {
-    public class VehicleDataModel
+    public class VehicleDataModel:VehiclePlate
     {
-
-        public string registrationNumber { get; set; }
         public int co2Emissions { get; set; }
         public int engineCapacity { get; set; }
         public bool markedForExport { get; set; }

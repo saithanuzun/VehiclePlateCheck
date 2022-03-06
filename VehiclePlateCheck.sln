@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclePlateCheck.Android",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclePlateCheck.iOS", "VehiclePlateCheck.iOS\VehiclePlateCheck.iOS.csproj", "{D630042B-3DDE-4A0D-89EE-B2371D41D0A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclePlateCheck", "VehiclePlateCheck\VehiclePlateCheck.csproj", "{AF25F3E0-CAAB-4567-970B-0329C6EF54FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclePlateCheck", "VehiclePlateCheck\VehiclePlateCheck.csproj", "{AF25F3E0-CAAB-4567-970B-0329C6EF54FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

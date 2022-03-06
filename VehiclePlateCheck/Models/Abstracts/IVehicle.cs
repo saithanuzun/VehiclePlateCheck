@@ -4,8 +4,8 @@ using System.Text;
 
 namespace VehiclePlateCheck.Models
 {
-    public class RequestBody:VehiclePlate
+    public interface IVehicle
     {
-        
+        string registrationNumber { get; set; }
     }
 }

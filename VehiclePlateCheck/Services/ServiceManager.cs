@@ -26,7 +26,7 @@ namespace VehiclePlateCheck.Services
             var request = new HttpRequestMessage(new HttpMethod("POST"), Constants.Url);
 
             request.Headers.TryAddWithoutValidation("x-api-key", Constants.ApiKey);
-            request.Content = new StringContent("{\"registrationNumber\": \"" + _requestBody.RegistrationNumber + "\"}");
+            request.Content = new StringContent("{\"registrationNumber\": \"" + _requestBody.registrationNumber + "\"}");
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
 

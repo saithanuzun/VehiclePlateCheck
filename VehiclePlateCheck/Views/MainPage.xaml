@@ -15,30 +15,31 @@
 
 
     <StackLayout BackgroundColor="#353b48" Orientation="Vertical" >
-        
+
 
         <Frame Margin="20,50,20,0" CornerRadius="25">
-
             <Entry BackgroundColor="White"   Placeholder="ENTER PLATE" TextTransform="Uppercase" 
                    MaxLength="8" CharacterSpacing="2" HorizontalTextAlignment="Center" FontFamily="NumberPlate" FontAttributes="Bold" FontSize="30"
                    Text="{Binding Plate}">
             </Entry>
-
         </Frame>
-        
+        <ListView>
+            <ListView.ItemTemplate>
+                
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
 
 
         <Button IsVisible="{Binding IsVisibleButton}"  VerticalOptions="EndAndExpand" HorizontalOptions="Center" WidthRequest="120" HeightRequest="100" BorderRadius="80" Text="CHECK" 
-                 Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" ></Button>
+                 Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" >
+        </Button>
 
-        <ActivityIndicator IsVisible="{Binding IsVisibleIndicator}" IsRunning="{Binding IsRunning}"  Color="#f5f6fa"  VerticalOptions="EndAndExpand" Margin="0,0,0,50">
-
+        <ActivityIndicator IsVisible="{Binding IsVisibleIndicator}" IsRunning="{Binding IsRunning}"  Color="#f5f6fa" 
+                           VerticalOptions="EndAndExpand" Margin="0,0,0,50">
         </ActivityIndicator>
 
-
     </StackLayout>
-    
-
-
 
 </ContentPage>

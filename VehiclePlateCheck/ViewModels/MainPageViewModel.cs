@@ -10,21 +10,32 @@ using VehiclePlateCheck.Views;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.Runtime.CompilerServices;
+using VehiclePlateCheck.Database;
 
 namespace VehiclePlateCheck.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public INavigation Navigation { get; private set; }
+        
 
         private ICommand _buttonClickedCommand;
         private String _plate;
         private bool _isRunning = false;
         private bool _isVisibleButton = true;
         private bool _isVisibleIndicator = false;
+        private List<VehiclePlate> _searches = new List<VehiclePlate>();
 
-
-
+        public List<VehiclePlate> Searches
+        {
+            get => _searches;
+            set
+            {
+                _searches.Clear();
+                _searches = value;
+                OnPropertyChanged();
+            }
+        }
         public String Plate
         {
             get => _plate;
@@ -82,51 +93,55 @@ namespace VehiclePlateCheck.ViewModels
         }
 
 
+
         private ServiceManager _serviceManager = new ServiceManager();
         public async void ButtonClicked()
         {
-            void ViewControl()
+            void ActivityIndicatorController()
             {
                 IsRunning = !IsRunning;
                 IsVisibleIndicator = !IsVisibleIndicator;
                 IsVisibleButton = !IsVisibleButton;
-
             }
-            ViewControl();
-            await Task.Delay(1000);
+            ActivityIndicatorController();
+            await Task.Delay(500);
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 await App.Current.MainPage.DisplayAlert("Information", "No Internet Connection", "OK");
-                ViewControl();
+                ActivityIndicatorController();
                 return;
             }
             else if (_plate == null)
             {
                 await App.Current.MainPage.DisplayAlert("Information", "Please Enter a Valid Registration", "OK");
-                ViewControl();
+                ActivityIndicatorController();
                 return;
             }
             else
             {
                 RequestBody _requestBody = new RequestBody();
-                _requestBody.RegistrationNumber = _plate;
+                _requestBody.registrationNumber = _plate;
 
                 var VehicleDataModel = await _serviceManager.GetVehicleDataAsync(_requestBody);
 
                 if (VehicleDataModel == null)
                 {
                     await App.Current.MainPage.DisplayAlert("Information", "Vehicle Has Not Been Found", "OK");
-                    ViewControl();
+                    ActivityIndicatorController();
                     return;
 
                 }
                 else
                 {
+                    DatabaseModel model = new DatabaseModel();
+                    model.registrationNumber = _plate;
+                    
+                    await App.DatabaseManager.SaveDatabaseAsync(model);
                     await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
-                    ViewControl();
-                }              
-            }         
+                    ActivityIndicatorController();
+                }
+            }
         }
 
 

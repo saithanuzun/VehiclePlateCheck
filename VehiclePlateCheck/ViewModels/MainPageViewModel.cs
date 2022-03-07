@@ -11,29 +11,53 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.Runtime.CompilerServices;
 using VehiclePlateCheck.Database;
+using System.Collections.ObjectModel;
+
 
 namespace VehiclePlateCheck.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public INavigation Navigation { get; private set; }
-        
+
 
         private ICommand _buttonClickedCommand;
         private String _plate;
         private bool _isRunning = false;
         private bool _isVisibleButton = true;
         private bool _isVisibleIndicator = false;
-        private List<VehiclePlate> _searches = new List<VehiclePlate>();
+        private ObservableCollection<DatabaseModel> _searches;
+        private DatabaseModel _selectedItem;
 
-        public List<VehiclePlate> Searches
+        public DatabaseModel SelectedItem
         {
-            get => _searches;
+            get => _selectedItem;
             set
             {
-                _searches.Clear();
-                _searches = value;
-                OnPropertyChanged();
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    HandleSelectedItem();
+                }
+            }
+        }
+
+        public ObservableCollection<DatabaseModel> Searches
+        {
+            get
+            {
+                if (_searches == null)
+                {
+                    _searches = new ObservableCollection<DatabaseModel>(App.DatabaseManager.GetDatabaseAsync().Result);
+                }
+                return _searches;
+            }
+            set
+            {
+                if (value != _searches)
+                {
+                    _searches = value;
+                }
             }
         }
         public String Plate
@@ -77,6 +101,10 @@ namespace VehiclePlateCheck.ViewModels
         {
             get
             {
+                if (_buttonClickedCommand == null)
+                {
+                    _buttonClickedCommand = new Command(ButtonClicked);
+                }
                 return _buttonClickedCommand;
             }
             set
@@ -89,12 +117,11 @@ namespace VehiclePlateCheck.ViewModels
         public MainPageViewModel(INavigation navigation)
         {
             this.Navigation = navigation;
-            _buttonClickedCommand = new Command(ButtonClicked);
         }
-
-
-
-        private ServiceManager _serviceManager = new ServiceManager();
+        private void HandleSelectedItem()
+        {
+            Plate = SelectedItem.registrationNumber;
+        }
         public async void ButtonClicked()
         {
             void ActivityIndicatorController()
@@ -104,46 +131,48 @@ namespace VehiclePlateCheck.ViewModels
                 IsVisibleButton = !IsVisibleButton;
             }
             ActivityIndicatorController();
-            await Task.Delay(500);
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 await App.Current.MainPage.DisplayAlert("Information", "No Internet Connection", "OK");
-                ActivityIndicatorController();
-                return;
             }
-            else if (_plate == null)
+            else if (Plate == null)
             {
                 await App.Current.MainPage.DisplayAlert("Information", "Please Enter a Valid Registration", "OK");
-                ActivityIndicatorController();
-                return;
             }
             else
             {
-                RequestBody _requestBody = new RequestBody();
-                _requestBody.registrationNumber = _plate;
+                ServiceManager _serviceManager = new ServiceManager();
+
+                RequestBody _requestBody = new RequestBody { registrationNumber = Plate };
 
                 var VehicleDataModel = await _serviceManager.GetVehicleDataAsync(_requestBody);
 
                 if (VehicleDataModel == null)
                 {
                     await App.Current.MainPage.DisplayAlert("Information", "Vehicle Has Not Been Found", "OK");
-                    ActivityIndicatorController();
-                    return;
-
                 }
                 else
                 {
-                    DatabaseModel model = new DatabaseModel();
-                    model.registrationNumber = _plate;
-                    
-                    await App.DatabaseManager.SaveDatabaseAsync(model);
+                    bool isExist = false;
+                    foreach (var m in App.DatabaseManager.GetDatabaseAsync().Result)
+                    {
+                        if (m.registrationNumber == Plate)
+                        {
+                            isExist = true;
+                        }
+                    }
+                    if (!isExist)
+                    {
+                        DatabaseModel model = new DatabaseModel { registrationNumber = Plate };
+                        await App.DatabaseManager.SaveDatabaseAsync(model);
+                        Searches.Add(model);
+                    }
                     await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
-                    ActivityIndicatorController();
                 }
             }
+            ActivityIndicatorController();
         }
-
 
 
         public event PropertyChangedEventHandler PropertyChanged;

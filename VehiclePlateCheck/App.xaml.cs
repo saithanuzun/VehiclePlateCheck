@@ -19,7 +19,7 @@ namespace VehiclePlateCheck
             {
                 if (_databaseManager == null)
                 {
-                    _databaseManager = new DatabaseManager(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Searches.db3"));
+                    _databaseManager = new DatabaseManager(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Searches.db1"));
 
                 }
                 return _databaseManager;

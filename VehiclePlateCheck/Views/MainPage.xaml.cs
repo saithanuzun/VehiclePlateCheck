@@ -19,6 +19,5 @@ namespace VehiclePlateCheck.Views
            
         }
 
-      
     }
 }

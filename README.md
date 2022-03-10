@@ -1,5 +1,10 @@
 # VehiclePlateCheck
 United Kingdom Vehicle Plate Check Xamarin App
 
-https://user-images.githubusercontent.com/61024473/157710209-6743d677-9196-412f-90ea-ec7ee599b6b0.mp4
+
+* MVVM
+* SQLite
+* Newtonsoft.Json
+
+![gif](https://user-images.githubusercontent.com/61024473/157752911-07e71c8f-5057-4a2c-9be4-639a124d5537.gif)
 

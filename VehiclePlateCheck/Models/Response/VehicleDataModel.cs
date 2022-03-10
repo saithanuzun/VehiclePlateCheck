@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
-
-namespace VehiclePlateCheck.Models
+﻿namespace VehiclePlateCheck.Models
 {
     public class VehicleDataModel:VehiclePlate
     {

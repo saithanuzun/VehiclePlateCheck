@@ -1,9 +1,8 @@
 ﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using VehiclePlateCheck.Views;
-using VehiclePlateCheck.Database;
 using System.IO;
+using VehiclePlateCheck.Database;
+using VehiclePlateCheck.Views;
+using Xamarin.Forms;
 
 [assembly: ExportFont("UKNumberPlate.ttf")]
 [assembly: ExportFont("UKNumberPlate.ttf", Alias = "NumberPlate")]

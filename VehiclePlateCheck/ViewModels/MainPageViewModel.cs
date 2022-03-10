@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using VehiclePlateCheck.Database;
 using VehiclePlateCheck.Models;
 using VehiclePlateCheck.Services;
 using VehiclePlateCheck.Views;
-using Xamarin.Forms;
 using Xamarin.Essentials;
-using System.Runtime.CompilerServices;
-using VehiclePlateCheck.Database;
-using System.Collections.ObjectModel;
-
+using Xamarin.Forms;
 
 namespace VehiclePlateCheck.ViewModels
 {
@@ -48,7 +45,7 @@ namespace VehiclePlateCheck.ViewModels
             {
                 if (_searches == null)
                 {
-                    _searches = new ObservableCollection<DatabaseModel>(App.DatabaseManager.GetDatabaseAsync().Result);
+                    _searches = new ObservableCollection<DatabaseModel>(App.DatabaseManager.GetDatabaseAsync().Result.Reverse<DatabaseModel>());
                 }
                 return _searches;
             }
@@ -57,6 +54,7 @@ namespace VehiclePlateCheck.ViewModels
                 if (value != _searches)
                 {
                     _searches = value;
+                    
                 }
             }
         }
@@ -157,16 +155,16 @@ namespace VehiclePlateCheck.ViewModels
                     bool isExist = false;
                     foreach (var m in App.DatabaseManager.GetDatabaseAsync().Result)
                     {
-                        if (m.registrationNumber == Plate)
+                        if (m.registrationNumber == Plate.Replace(" ", ""))
                         {
                             isExist = true;
                         }
                     }
                     if (!isExist)
                     {
-                        DatabaseModel model = new DatabaseModel { registrationNumber = Plate };
+                        DatabaseModel model = new DatabaseModel { registrationNumber = Plate.Replace(" ", "") };
                         await App.DatabaseManager.SaveDatabaseAsync(model);
-                        Searches.Add(model);
+                        Searches.Insert(0,model);
                     }
                     await Navigation.PushAsync(new DetailsPage(VehicleDataModel));
                 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VehiclePlateCheck.Services
+﻿namespace VehiclePlateCheck.Services
 {
     public static class Constants
     {

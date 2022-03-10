@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VehiclePlateCheck.Models;
+﻿using VehiclePlateCheck.Models;
 using VehiclePlateCheck.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

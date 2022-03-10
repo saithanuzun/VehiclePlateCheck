@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
-using System.Diagnostics;
+﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using VehiclePlateCheck.Models;
-using System.Text.Json;
 
 namespace VehiclePlateCheck.Services
 {

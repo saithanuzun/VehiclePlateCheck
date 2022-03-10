@@ -2,11 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiclePlateCheck.Views.MainPage"
-             xmlns:local="clr-namespace:VehiclePlateCheck.ViewModels"
-             x:DataType="local:MainPageViewModel">
+             xmlns:local="clr-namespace:VehiclePlateCheck.ViewModels">
 
     <NavigationPage.TitleView >
- 
+
         <StackLayout >
             <Label Text="VEHICLE CHECK" TextColor="#f5f6fa" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"  FontFamily="NumberPlate" FontSize="35" ></Label>
         </StackLayout>
@@ -18,19 +17,24 @@
 
 
         <Frame Margin="20,50,20,0" CornerRadius="25">
-            <Entry BackgroundColor="White"   Placeholder="ENTER PLATE" TextTransform="Uppercase" 
-                   MaxLength="8" CharacterSpacing="2" HorizontalTextAlignment="Center" FontFamily="NumberPlate" FontAttributes="Bold" FontSize="30"
+            <Entry BackgroundColor="White"   Placeholder="ENTER PLATE" TextTransform="Uppercase" VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
+                   MaxLength="8" CharacterSpacing="0" HorizontalTextAlignment="Center" FontFamily="NumberPlate"  FontSize="50"
                    Text="{Binding Plate}">
             </Entry>
         </Frame>
-        
-        <ListView  ItemsSource="{Binding Searches}"  SelectedItem="{Binding SelectedItem}" >
+
+        <ListView  ItemsSource="{Binding Searches}"  SelectedItem="{Binding SelectedItem}" Margin="0,30,0,30" HasUnevenRows="True"   >
             <ListView.ItemTemplate >
-                <DataTemplate >
-                    <TextCell Text="{Binding registrationNumber}" />
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View >
+                            <Label Text="{Binding registrationNumber}" TextColor="White" HorizontalOptions="Center" FontFamily="NumberPlate" FontSize="50" Margin="0,10,0,10" ></Label>
+                        </ViewCell.View>
+
+                    </ViewCell>
+
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
 
 
@@ -39,7 +43,7 @@
                  Margin="0,0,0,30" Command="{Binding ButtonClickedCommand}" FontFamily="NumberPlate" FontSize="25" >
         </Button>
 
-        <ActivityIndicator IsVisible="{Binding IsVisibleIndicator}" IsRunning="{Binding IsRunning}"  Color="#f5f6fa" 
+        <ActivityIndicator IsVisible="{Binding IsVisibleIndicator}" IsRunning="{Binding IsRunning}"  Color="#f5f6fa"
                            VerticalOptions="EndAndExpand" Margin="0,0,0,50">
         </ActivityIndicator>
 
